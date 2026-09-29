@@ -3,39 +3,90 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Projects — Mhamed Halhoul</title>
-  <meta name="description" content="Selected projects by Mhamed Halhoul: Talk-to-Agent, a real-time voice AI technical demo, and Hujja, an auditable rules-as-code project.">
+  <title>Software Projects — Mhamed Halhoul</title>
+  <meta name="description" content="Two software case studies by Mhamed Halhoul: Talk-to-Agent, a local real-time voice demo, and Hujja, a pre-alpha rules-as-code project.">
   <meta name="author" content="Mhamed Halhoul">
   <meta name="robots" content="index, follow">
-  <meta name="theme-color" content="#0b0d12">
+  <meta name="theme-color" content="#f3f0e8">
   <link rel="canonical" href="https://halhoulmhamed-droid.github.io/projects/">
+  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="/assets/css/styles.css">
-  <meta property="og:type" content="website"><meta property="og:site_name" content="Mhamed Halhoul"><meta property="og:title" content="Projects — Mhamed Halhoul"><meta property="og:description" content="Two selected Python projects, presented with their architecture and limits."><meta property="og:url" content="https://halhoulmhamed-droid.github.io/projects/">
-  <meta name="twitter:card" content="summary"><meta name="twitter:title" content="Projects — Mhamed Halhoul"><meta name="twitter:description" content="Two selected Python projects, presented with their architecture and limits.">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Mhamed Halhoul">
+  <meta property="og:title" content="Software Projects — Mhamed Halhoul">
+  <meta property="og:description" content="Talk-to-Agent and Hujja, documented with their current architecture, status, and limitations.">
+  <meta property="og:url" content="https://halhoulmhamed-droid.github.io/projects/">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Software Projects — Mhamed Halhoul">
+  <meta name="twitter:description" content="Talk-to-Agent and Hujja, documented with their current architecture, status, and limitations.">
   <script src="/assets/js/main.js" defer></script>
 </head>
 <body>
   <a class="skip-link" href="#main-content">Skip to content</a>
-  <header class="site-header" data-site-header><div class="shell header-inner"><a class="brand" href="/" aria-label="Mhamed Halhoul, home"><span class="brand-mark" aria-hidden="true">MH</span><span class="brand-name">Mhamed Halhoul</span></a><button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" data-nav-toggle><span>Menu</span><span class="nav-toggle-mark" aria-hidden="true"></span></button><nav class="site-nav" id="site-nav" aria-label="Primary" data-site-nav><a href="/">Home</a><a href="/about/">About</a><a href="/projects/" aria-current="page">Projects</a><a class="nav-external" href="https://github.com/halhoulmhamed-droid" rel="me noopener noreferrer">GitHub <span aria-hidden="true">↗</span></a></nav></div></header>
+  <header class="site-header" data-site-header>
+    <div class="shell header-inner">
+      <a class="brand" href="/" aria-label="Mhamed Halhoul, home"><span class="brand-mark" aria-hidden="true">MH</span><span class="brand-name">Mhamed Halhoul</span></a>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" data-nav-toggle><span>Menu</span><span class="nav-toggle-mark" aria-hidden="true"></span></button>
+      <nav class="site-nav" id="site-nav" aria-label="Primary" data-site-nav>
+        <a href="/">Home</a><a href="/about/">About</a><a href="/projects/" aria-current="page">Projects</a><a class="nav-external" href="https://github.com/halhoulmhamed-droid" rel="me noopener noreferrer">GitHub <span aria-hidden="true">↗</span></a>
+      </nav>
+    </div>
+  </header>
+
   <main id="main-content">
-    <section class="page-hero shell projects-hero">
-      <p class="eyebrow"><span>Projects</span> Selected systems</p>
-      <div class="page-hero-grid"><h1>Working software, with the <em>edges</em> left visible.</h1><p>These project notes focus on what each repository demonstrates today. Prototype scope, missing pieces, and safety boundaries are part of the story—not footnotes.</p></div>
+    <section class="page-hero shell">
+      <div>
+        <p class="eyebrow"><span>Selected work</span> Software case studies</p>
+        <h1>Projects documented at their <em>current state</em>.</h1>
+      </div>
+      <div class="page-hero-copy">
+        <p>This collection currently contains two software projects. Each case study separates implemented behavior from missing pieces and planned production requirements.</p>
+      </div>
     </section>
-    <section class="section shell project-list" aria-label="Selected projects">
-      <article class="project-row project-row-voice">
-        <div class="project-row-meta"><span>01</span><span>Technical demo</span></div>
-        <div class="project-row-title"><p>Real-time voice AI</p><h2>Talk-to-Agent</h2></div>
-        <div class="project-row-copy"><p>A browser-to-Python-to-Gemini Live audio path using FastAPI, FastRTC/WebRTC, asynchronous streaming, and browser media APIs.</p><ul class="tag-list" aria-label="Technologies"><li>Python</li><li>FastAPI</li><li>WebRTC</li><li>JavaScript</li></ul><a class="text-link" href="/projects/talk-to-agent/">Open case file <span aria-hidden="true">→</span></a></div>
-      </article>
-      <article class="project-row project-row-hujja">
-        <div class="project-row-meta"><span>02</span><span>Pre-alpha</span></div>
-        <div class="project-row-title"><p>Auditable rules-as-code</p><h2>Hujja</h2></div>
-        <div class="project-row-copy"><p>A Python project for Shariah stock-screening rules with versioned definitions, schema validation, explicit review status, and an evidence-oriented output model.</p><ul class="tag-list" aria-label="Technologies"><li>Python</li><li>JSON Schema</li><li>Rules</li><li>Validation</li></ul><a class="text-link" href="/projects/hujja/">Open case file <span aria-hidden="true">→</span></a></div>
-      </article>
+
+    <section class="section shell" aria-label="Selected software projects">
+      <div class="work-list">
+        <article class="work-entry">
+          <span class="work-number" aria-hidden="true">01</span>
+          <div class="work-title">
+            <span class="status">Local technical demo</span>
+            <h2>Talk-to-Agent</h2>
+            <p class="work-kicker">Real-time voice integration</p>
+          </div>
+          <div class="work-copy">
+            <p>A browser-to-Python-to-Gemini Live audio path using FastAPI, FastRTC/WebRTC, asynchronous streaming, and browser media APIs.</p>
+            <ul class="tag-list" aria-label="Talk-to-Agent technologies"><li>Python</li><li>FastAPI</li><li>WebRTC</li><li>JavaScript</li></ul>
+            <p class="scope-line"><strong>Scope:</strong> local demo only. It is not a production recruitment platform and does not provide CV upload, saved transcripts, authentication, or production-grade multi-user isolation.</p>
+            <a class="text-link" href="/projects/talk-to-agent/">Open case study <span aria-hidden="true">→</span></a>
+          </div>
+        </article>
+
+        <article class="work-entry">
+          <span class="work-number" aria-hidden="true">02</span>
+          <div class="work-title">
+            <span class="status">Pre-alpha</span>
+            <h2>Hujja</h2>
+            <p class="work-kicker">Auditable rules-as-code</p>
+          </div>
+          <div class="work-copy">
+            <p>A Python project for Shariah stock-screening rules with versioned definitions, schema validation, explicit review status, and an evidence-oriented output model.</p>
+            <ul class="tag-list" aria-label="Hujja technologies"><li>Python</li><li>JSON Schema</li><li>Versioned rules</li><li>Validation</li></ul>
+            <p class="scope-line"><strong>Scope:</strong> the contract layer is published; the loader and screening execution engine are not yet implemented. It is not a fatwa or investment advice.</p>
+            <a class="text-link" href="/projects/hujja/">Open case study <span aria-hidden="true">→</span></a>
+          </div>
+        </article>
+      </div>
     </section>
-    <section class="section shell scope-note" aria-labelledby="scope-title"><p class="eyebrow"><span>Note</span> Curation</p><div><h2 id="scope-title">Deliberately small.</h2><p>This portfolio documents two selected repositories in depth. It does not use repository counts, activity metrics, or broad claims as a substitute for explaining the actual work.</p></div></section>
+
+    <section class="section shell collection-note" aria-labelledby="collection-title">
+      <p class="section-label">Curation</p>
+      <div>
+        <h2 id="collection-title">A structure ready for documented academic work.</h2>
+        <p>The page uses a repeatable case-study structure. A future academic project can be added as a distinct category only when its question, model, method, reproducible results, limitations, sources, and repository can be documented accurately.</p>
+      </div>
+    </section>
   </main>
-  <footer class="site-footer"><div class="shell footer-inner"><p>© <span data-year>2026</span> Mhamed Halhoul</p><div class="footer-links"><a href="https://www.linkedin.com/in/mhamed-halhoul/" rel="me noopener noreferrer">LinkedIn</a><a href="https://orcid.org/0009-0007-3893-2603" rel="me noopener noreferrer">ORCID</a></div></div></footer>
+
+  <footer class="site-footer"><div class="shell footer-inner"><p>© <span data-year>2026</span> Mhamed Halhoul</p><div class="footer-links"><a href="/">Home</a><a href="/about/">Academic background</a><a href="https://www.linkedin.com/in/mhamed-halhoul/" rel="me noopener noreferrer">LinkedIn</a><a href="https://orcid.org/0009-0007-3893-2603" rel="me noopener noreferrer">ORCID</a></div></div></footer>
 </body>
 </html>
