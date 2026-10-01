@@ -12,9 +12,10 @@ Canonical GitHub Pages address:
 
 ## Information architecture
 
-- Home — academic identity, current Master’s stage, interests, and a concise view of the two software projects
+- Home — academic identity, current Master’s stage, interests, and selected academic and software projects
 - About — education with distinct M1/M2 coursework status, teaching periods, current interests, doctoral direction, and selected coursework topics
-- Projects — index of the two currently published software case studies
+- Projects — distinct academic-work and software-work categories
+- Image Denoising with PDEs — reproducible M2 course project with archived experiments, a French report, slides, and explicit study limitations
 - Talk-to-Agent — local real-time voice demo, including prototype and production boundaries
 - Hujja — pre-alpha rules-as-code project, including missing implementation and advisory boundaries
 - Custom 404 page
@@ -42,7 +43,7 @@ py -m http.server 8000
 
 Then visit `http://127.0.0.1:8000/`. Root-relative links and assets should be checked through the server rather than by opening the HTML files directly.
 
-## Adding a real academic project later
+## Adding a documented academic project
 
 Add an academic project only after the work can be documented accurately.
 
