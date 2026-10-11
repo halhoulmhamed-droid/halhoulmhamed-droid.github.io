@@ -1,0 +1,7 @@
+# GitHub Pages serves the committed HTML; development sources are not published.
+exclude:
+  - README.md
+  - content
+  - tools
+  - tests
+  - docs

@@ -1,0 +1,56 @@
+[
+  {
+    "file": "assets/figures/pde-comparison.webp",
+    "source": "https://github.com/halhoulmhamed-droid/pde-image-denoising/blob/ae03109cdb2150b760e5a4b8bcffb56bba1b98e0/results/extended/figures/comparison.png",
+    "source_sha256": "e378058fb6c64c7a2ffba5d568f1310f6f84a9e1aaa3cddd9606d72d639ccbde",
+    "derivative_sha256": "88e7bf6a574000dece284c2068b7833988608882089ebd956a8e28986f080320",
+    "conversion": "Pillow WebP quality 90, proportions retained; PDF rasterization at 180 dpi; no changes to data or labels.",
+    "author": "Halhoul Mhamed",
+    "caption_and_data_provenance": "See the figure caption in the corresponding English/French case page."
+  },
+  {
+    "file": "assets/figures/pde-intensity_profile.webp",
+    "source": "https://github.com/halhoulmhamed-droid/pde-image-denoising/blob/ae03109cdb2150b760e5a4b8bcffb56bba1b98e0/results/extended/figures/intensity_profile.png",
+    "source_sha256": "9ae45fcf7da24d2bac6ce5d3be83f952a3d551e1dc0451c3840d1ee80ea6f954",
+    "derivative_sha256": "9eeb89ca8800baed4b8b3368e1fc86dc26bb624d6456fa6d56e297bace6f803f",
+    "conversion": "Pillow WebP quality 90, proportions retained; PDF rasterization at 180 dpi; no changes to data or labels.",
+    "author": "Halhoul Mhamed",
+    "caption_and_data_provenance": "See the figure caption in the corresponding English/French case page."
+  },
+  {
+    "file": "assets/figures/nn-paired_effects.webp",
+    "source": "https://github.com/halhoulmhamed-droid/nn-optimization-benchmark/blob/155036dcbcbc80b9ec076261c1f7ad90a081832b/report/figures/paired_effects.pdf",
+    "source_sha256": "715026aee36690aece6a064df1f0e1d4e252648baf45b6926cf542d683c96c78",
+    "derivative_sha256": "4452079e3d5bd70f279aefe0c4f999edac0ee7a2ccf5087d0e15c912441195a4",
+    "conversion": "Pillow WebP quality 90, proportions retained; PDF rasterization at 180 dpi; no changes to data or labels.",
+    "author": "Halhoul Mhamed",
+    "caption_and_data_provenance": "See the figure caption in the corresponding English/French case page."
+  },
+  {
+    "file": "assets/figures/nn-error_decision.webp",
+    "source": "https://github.com/halhoulmhamed-droid/nn-optimization-benchmark/blob/155036dcbcbc80b9ec076261c1f7ad90a081832b/report/figures/error_decision.pdf",
+    "source_sha256": "5be8ed2dfe246fb0b570e635b9e9c56a5df99bca332d96521749b8f846d7f9b1",
+    "derivative_sha256": "8981393c163bab8f2cb212325e6c97b93e478ab13a1b706e5ef7dcc26519c5ae",
+    "conversion": "Pillow WebP quality 90, proportions retained; PDF rasterization at 180 dpi; no changes to data or labels.",
+    "author": "Halhoul Mhamed",
+    "caption_and_data_provenance": "See the figure caption in the corresponding English/French case page."
+  },
+  {
+    "file": "assets/figures/inverse-dispersion.webp",
+    "source": "https://github.com/halhoulmhamed-droid/inverse-laplace-learning/blob/0ea95cd7e390c8a478469b36a043a5f99e4fcd10/figures/dispersion_entrainements.png",
+    "source_sha256": "9c9f82a0afff035d1e58ae4ed806b3e85f72892327513cb7cf63753cb4efc1e4",
+    "derivative_sha256": "813dab466f8b4447adecbda62f1cf7bbe70197f25e8e216b975c0c024d06563a",
+    "conversion": "Pillow WebP quality 90, proportions retained; PDF rasterization at 180 dpi; no changes to data or labels.",
+    "author": "Halhoul Mhamed",
+    "caption_and_data_provenance": "See the figure caption in the corresponding English/French case page."
+  },
+  {
+    "file": "assets/figures/inverse-study3-primary.webp",
+    "source": "https://github.com/halhoulmhamed-droid/inverse-laplace-learning/blob/867144db98eba3c0f5fe7cece4261918a46f1c31/studies/study3/figures/primary.png",
+    "source_sha256": "4b1f3a7fe3434c7337ddfc9751ed8fba1fac84546cf672ad103c5cb3170334e9",
+    "derivative_sha256": "850924691254534261b5216937a18d310292913ef671f013f3f67417db1d23ef",
+    "conversion": "Pillow WebP quality 90, proportions retained; PDF rasterization at 180 dpi; no changes to data or labels.",
+    "author": "Halhoul Mhamed",
+    "caption_and_data_provenance": "See the figure caption in the corresponding English/French case page."
+  }
+]

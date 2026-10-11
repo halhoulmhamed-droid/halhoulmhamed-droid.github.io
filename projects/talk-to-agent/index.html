@@ -1,123 +1,44 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Talk-to-Agent — Mhamed Halhoul</title>
-  <meta name="description" content="Talk-to-Agent is a local real-time voice AI technical demo connecting browser audio to Gemini Live through FastAPI and WebRTC.">
-  <meta name="author" content="Mhamed Halhoul">
-  <meta name="robots" content="index, follow">
-  <meta name="theme-color" content="#f3f0e8">
-  <link rel="canonical" href="https://halhoulmhamed-droid.github.io/projects/talk-to-agent/">
-  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="/assets/css/styles.css">
-  <meta property="og:type" content="article">
-  <meta property="og:site_name" content="Mhamed Halhoul">
-  <meta property="og:title" content="Talk-to-Agent — Real-time voice AI demo">
-  <meta property="og:description" content="A local browser-to-AI voice integration built with FastAPI, FastRTC/WebRTC, and Gemini Live.">
-  <meta property="og:url" content="https://halhoulmhamed-droid.github.io/projects/talk-to-agent/">
-  <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="Talk-to-Agent — Real-time voice AI demo">
-  <meta name="twitter:description" content="A local browser-to-AI voice integration built with FastAPI, FastRTC/WebRTC, and Gemini Live.">
-  <script src="/assets/js/main.js" defer></script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Talk-to-Agent · real-time voice integration — Halhoul Mhamed</title>
+<meta name="description" content="Local voice-AI prototype connecting browser audio, WebRTC, FastAPI and Gemini Live. Documented integration work, published code and tests, with explicit production limitations.">
+<meta name="author" content="Halhoul Mhamed">
+<meta name="robots" content="index, follow">
+<meta name="theme-color" content="#f5f3ed">
+<link rel="canonical" href="https://halhoulmhamed-droid.github.io/projects/talk-to-agent/">
+<link rel="alternate" hreflang="en" href="https://halhoulmhamed-droid.github.io/projects/talk-to-agent/"><link rel="alternate" hreflang="fr" href="https://halhoulmhamed-droid.github.io/fr/projects/talk-to-agent/"><link rel="alternate" hreflang="x-default" href="https://halhoulmhamed-droid.github.io/projects/talk-to-agent/">
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<script>document.documentElement.classList.add("js");</script>
+<link rel="stylesheet" href="/assets/css/styles.css">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Halhoul Mhamed — Academic portfolio">
+<meta property="og:title" content="Talk-to-Agent · real-time voice integration — Halhoul Mhamed">
+<meta property="og:description" content="Local voice-AI prototype connecting browser audio, WebRTC, FastAPI and Gemini Live. Documented integration work, published code and tests, with explicit production limitations.">
+<meta property="og:url" content="https://halhoulmhamed-droid.github.io/projects/talk-to-agent/">
+<meta property="og:locale" content="en_GB">
+<meta property="og:locale:alternate" content="fr_FR">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Talk-to-Agent · real-time voice integration — Halhoul Mhamed">
+<meta name="twitter:description" content="Local voice-AI prototype connecting browser audio, WebRTC, FastAPI and Gemini Live. Documented integration work, published code and tests, with explicit production limitations.">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebPage", "name": "Talk-to-Agent · real-time voice integration", "url": "https://halhoulmhamed-droid.github.io/projects/talk-to-agent/", "inLanguage": "en", "description": "Local voice-AI prototype connecting browser audio, WebRTC, FastAPI and Gemini Live. Documented integration work, published code and tests, with explicit production limitations.", "about": {"@type": "Person", "name": "Halhoul Mhamed", "url": "https://halhoulmhamed-droid.github.io/", "email": "halhoul.mhamed@etu.uae.ac.ma", "affiliation": {"@type": "CollegeOrUniversity", "name": "Université Abdelmalek Essaâdi — Faculté Polydisciplinaire de Larache"}}}</script>
+<script src="/assets/js/main.js" defer></script>
 </head>
 <body>
-  <a class="skip-link" href="#main-content">Skip to content</a>
-  <header class="site-header" data-site-header>
-    <div class="shell header-inner">
-      <a class="brand" href="/" aria-label="Mhamed Halhoul, home"><span class="brand-mark" aria-hidden="true">MH</span><span class="brand-name">Mhamed Halhoul</span></a>
-      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" data-nav-toggle><span>Menu</span><span class="nav-toggle-mark" aria-hidden="true"></span></button>
-      <nav class="site-nav" id="site-nav" aria-label="Primary" data-site-nav>
-        <a href="/">Home</a><a href="/about/">About</a><a href="/projects/" aria-current="page">Projects</a><a class="nav-external" href="https://github.com/halhoulmhamed-droid" rel="me noopener noreferrer">GitHub <span aria-hidden="true">↗</span></a>
-      </nav>
-    </div>
-  </header>
-
-  <main id="main-content">
-    <article>
-      <header class="case-hero">
-        <div class="shell">
-          <a class="back-link" href="/projects/"><span aria-hidden="true">←</span> All software case studies</a>
-          <div class="case-title-grid">
-            <div><p class="eyebrow"><span>Case study 01</span> Real-time integration</p><h1>Talk-to-<em>Agent</em></h1></div>
-            <div class="case-summary">
-              <span class="status">Local technical demo</span>
-              <p>A compact voice AI prototype that coordinates microphone access, WebRTC audio, a Python backend, and an external live AI API.</p>
-              <a class="button button-primary" href="https://github.com/halhoulmhamed-droid/talk-to-agent" rel="noopener noreferrer">View repository <span aria-hidden="true">↗</span></a>
-            </div>
-          </div>
-          <div class="case-facts" aria-label="Talk-to-Agent facts">
-            <div><span>Format</span><strong>Local browser demo</strong></div>
-            <div><span>Published path</span><strong>Browser · WebRTC · FastAPI · Gemini Live</strong></div>
-            <div><span>Session bound</span><strong>Up to ten minutes</strong></div>
-          </div>
-        </div>
-      </header>
-
-      <section class="case-section shell" aria-labelledby="overview-title">
-        <div class="case-label"><span>01</span><p>Overview</p></div>
-        <div class="case-content">
-          <h2 id="overview-title">A live audio path, not a conventional request-response screen.</h2>
-          <div class="two-column-copy">
-            <p>Talk-to-Agent connects a browser microphone to Google’s Gemini Live API through a FastAPI backend and bidirectional WebRTC audio. The active demo runs a short, generic French-language pre-screening conversation and streams generated voice audio back to the browser.</p>
-            <p>The repository is framed as a local technical demo and portfolio prototype. Its purpose is to demonstrate integration across asynchronous Python, browser media APIs, real-time audio, and an external AI service—not to present a production recruitment platform.</p>
-          </div>
-        </div>
-      </section>
-
-      <section class="case-section shell" aria-labelledby="flow-title">
-        <div class="case-label"><span>02</span><p>System path</p></div>
-        <div class="case-content">
-          <h2 id="flow-title">The conversation crosses four boundaries.</h2>
-          <div class="architecture" role="img" aria-label="Browser microphone sends WebRTC audio to FastAPI and FastRTC, which streams PCM audio to Gemini Live API; generated audio returns to the browser.">
-            <div><span>01</span><strong>Browser</strong><small>Microphone input</small></div><b aria-hidden="true">→</b>
-            <div><span>02</span><strong>WebRTC</strong><small>Audio + signaling</small></div><b aria-hidden="true">→</b>
-            <div><span>03</span><strong>FastAPI</strong><small>FastRTC · async flow</small></div><b aria-hidden="true">→</b>
-            <div><span>04</span><strong>Gemini Live</strong><small>Generated voice</small></div>
-          </div>
-          <p class="architecture-note">Audio is resampled for the external service, streamed asynchronously in both directions, and played back in the browser. Application secrets stay on the server side.</p>
-        </div>
-      </section>
-
-      <section class="case-section shell" aria-labelledby="does-title">
-        <div class="case-label"><span>03</span><p>Current scope</p></div>
-        <div class="case-content">
-          <h2 id="does-title">What the demo does today.</h2>
-          <ul class="check-list">
-            <li><span aria-hidden="true">✓</span><div><strong>Captures browser audio</strong><p>Requests microphone access with the browser’s media API.</p></div></li>
-            <li><span aria-hidden="true">✓</span><div><strong>Negotiates bidirectional WebRTC</strong><p>Uses FastRTC to coordinate the real-time connection.</p></div></li>
-            <li><span aria-hidden="true">✓</span><div><strong>Streams audio asynchronously</strong><p>Converts incoming audio and returns generated voice audio to the browser.</p></div></li>
-            <li><span aria-hidden="true">✓</span><div><strong>Bounds local sessions</strong><p>Caps demo sessions at ten minutes to limit runaway local use.</p></div></li>
-          </ul>
-        </div>
-      </section>
-
-      <section class="case-section shell" aria-labelledby="limits-title">
-        <div class="case-label"><span>04</span><p>Boundaries</p></div>
-        <div class="case-content">
-          <div class="limit-box">
-            <p class="eyebrow"><span>Important</span> Prototype limits</p>
-            <h2 id="limits-title">The repository states what it is not.</h2>
-            <p>The current demo does not upload CVs or job descriptions, create structured interview reports, display or save transcripts, authenticate users, or provide production-grade multi-user isolation.</p>
-            <p>A production deployment would require authentication, hardened session isolation, rate limiting, production TLS/TURN configuration, and an explicit privacy and data-retention policy.</p>
-          </div>
-        </div>
-      </section>
-
-      <section class="case-section shell" aria-labelledby="stack-title">
-        <div class="case-label"><span>05</span><p>Stack</p></div>
-        <div class="case-content">
-          <h2 id="stack-title">Technologies in the published demo.</h2>
-          <ul class="stack-grid">
-            <li><strong>Python 3.11</strong><span>Runtime</span></li><li><strong>FastAPI + Uvicorn</strong><span>Backend</span></li><li><strong>FastRTC / WebRTC</strong><span>Real-time media</span></li><li><strong>Gemini Live API</strong><span>External AI</span></li><li><strong>AsyncIO + NumPy</strong><span>Audio flow</span></li><li><strong>HTML + CSS + JavaScript</strong><span>Browser UI</span></li>
-          </ul>
-        </div>
-      </section>
-    </article>
-
-    <nav class="next-project shell" aria-label="Next project"><span>Next case study</span><a href="/projects/hujja/"><small>02 / Rules as evidence</small><strong>Hujja <span aria-hidden="true">→</span></strong></a></nav>
-  </main>
-
-  <footer class="site-footer"><div class="shell footer-inner"><p>© <span data-year>2026</span> Mhamed Halhoul</p><div class="footer-links"><a href="/about/">Academic background</a><a href="https://github.com/halhoulmhamed-droid/talk-to-agent" rel="noopener noreferrer">Talk-to-Agent on GitHub ↗</a></div></div></footer>
-</body>
-</html>
+<a class="skip-link" href="#main-content">Skip to content</a>
+<header class="site-header" data-site-header><div class="shell header-inner">
+<a class="brand" href="/"><span class="brand-mark" aria-hidden="true">HM</span><span class="brand-name">Halhoul Mhamed</span></a>
+<button class="nav-toggle" type="button" aria-controls="site-nav" aria-expanded="false" data-nav-toggle>Menu <span class="nav-toggle-mark" aria-hidden="true"></span></button>
+<nav class="site-nav" id="site-nav" aria-label="Main navigation" data-site-nav><a href="/">Home</a><a href="/about/">About</a><a href="/projects/" aria-current="page">Projects</a><a href="/contact/">Contact</a></nav>
+<nav class="language-switch" aria-label="Language"><a class="lang-link" href="/projects/talk-to-agent/" lang="en" hreflang="en" data-language-link aria-current="true" aria-label="English">EN</a><a class="lang-link" href="/fr/projects/talk-to-agent/" lang="fr" hreflang="fr" data-language-link aria-label="Français">FR</a></nav>
+</div></header>
+<main id="main-content" tabindex="-1"><article><header class="case-hero shell"><p class="breadcrumb"><a href="/projects/"><svg class="inline-icon" aria-hidden="true" viewBox="0 0 16 16" width="16" height="16"><path d="M14 8H2m5-5L2 8l5 5"/></svg> All projects</a></p><p class="eyebrow">Software project</p><h1>Talk-to-Agent · real-time voice integration</h1><p class="lead">Local voice-AI prototype connecting browser audio, WebRTC, FastAPI and Gemini Live. Documented integration work, published code and tests, with explicit production limitations.</p><div class="case-meta">Local technical demo · No production deployment claimed</div></header><div class="case-layout shell"><nav class="case-nav" aria-label="On this page"><p class="eyebrow">On this page</p><a href="#problem">Problem</a><a href="#approach">Approach</a><a href="#contribution">Documented contribution</a><a href="#results">Prototype behavior</a><a href="#limits">Limits and current status</a><a href="#resources">Sources and implementation</a></nav><div class="case-body prose"><section aria-labelledby="problem"><h2 id="problem">Problem</h2><p>A conversational voice interface must coordinate microphone access, WebRTC signaling, continuous audio conversion, asynchronous model sessions, browser playback and connection cleanup. Talk-to-Agent explores that integration in a compact portfolio prototype.</p></section>
+<section aria-labelledby="approach"><h2 id="approach">Approach</h2><p>The browser exchanges audio with FastAPI through FastRTC/WebRTC. An asynchronous Python handler sends mono 16 kHz PCM input to Gemini Live and returns 24 kHz audio output. The interface offers five voices, microphone controls and audio visualizations. A server-side configuration supplies public ICE settings to the browser while keeping the API key on the backend.</p></section>
+<section aria-labelledby="contribution"><h2 id="contribution">Documented contribution</h2><p>Halhoul Mhamed’s published implementation connects the browser interface, Python backend and external streaming API. The repository documents bounded audio queues, session cleanup, voice-input validation, configurable local TLS and HTTP restricted to loopback. It includes tests for audio conversion, configuration, routes and handler state.</p></section>
+<section aria-labelledby="results"><h2 id="results">Prototype behavior</h2><p>The documented demo conducts a short, generic French pre-screening conversation and returns voice audio. Local sessions are capped at ten minutes; the code applies a shorter limit in its hosted-Space mode. A repository screenshot and implementation are available for inspection.</p><p>No end-to-end latency measurement, model-quality benchmark or production load result is published. The repository’s tests check local behavior; they do not demonstrate an independently validated live conversation.</p></section>
+<section aria-labelledby="limits"><h2 id="limits">Limits and current status</h2><p class="note">Local technical demo and portfolio prototype. Production use requires authentication, rate limiting, hardened session isolation, trusted TLS/TURN configuration, observability and explicit privacy and retention rules.</p><p>The demo has no CV or job-description upload, displayed or saved transcript, structured interview report, database or administrative dashboard. The Gemini streaming helper it uses is deprecated upstream and needs migration before sustained use. Voice audio is sent to the external Gemini service during a session.</p></section>
+<section aria-labelledby="resources"><h2 id="resources">Sources and implementation</h2><p>These links preserve the reviewed repository revision. The screenshot documents the interface, without constituting a performance measurement.</p><ul class="project-links"><li><a href="https://github.com/halhoulmhamed-droid/talk-to-agent/blob/fdebcf3f5b9edd4fe23eae4af28d0eaea10f8c74/README.md">Project README and scope</a></li><li><a href="https://github.com/halhoulmhamed-droid/talk-to-agent/blob/fdebcf3f5b9edd4fe23eae4af28d0eaea10f8c74/src/app/agent.py">Python backend and audio handler</a></li><li><a href="https://github.com/halhoulmhamed-droid/talk-to-agent/blob/fdebcf3f5b9edd4fe23eae4af28d0eaea10f8c74/src/static/script/script.js">Browser WebRTC integration</a></li><li><a href="https://github.com/halhoulmhamed-droid/talk-to-agent/blob/fdebcf3f5b9edd4fe23eae4af28d0eaea10f8c74/src/template/index.html">Interface markup</a></li><li><a href="https://github.com/halhoulmhamed-droid/talk-to-agent/tree/fdebcf3f5b9edd4fe23eae4af28d0eaea10f8c74/tests">Local test suite</a></li><li><a href="https://github.com/halhoulmhamed-droid/talk-to-agent/blob/fdebcf3f5b9edd4fe23eae4af28d0eaea10f8c74/requirements.txt">Dependency versions</a></li><li><a href="https://github.com/halhoulmhamed-droid/talk-to-agent/blob/fdebcf3f5b9edd4fe23eae4af28d0eaea10f8c74/docs/talk-to-agent-preview.png">Repository interface screenshot</a></li></ul><p><a href="https://github.com/halhoulmhamed-droid/talk-to-agent">Browse the repository</a></p></section></div></div></article></main>
+<footer class="site-footer"><div class="shell footer-inner"><div><p>© <span data-year>2026</span> Halhoul Mhamed</p><p class="muted">Mathematical modelling · Scientific computing</p></div><div class="footer-links"><a href="/contact/">Contact</a><a href="https://github.com/halhoulmhamed-droid" rel="noopener noreferrer">GitHub</a><a href="https://orcid.org/0009-0007-3893-2603" rel="noopener noreferrer">ORCID</a></div></div></footer>
+</body></html>
