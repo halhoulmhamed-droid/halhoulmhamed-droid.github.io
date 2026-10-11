@@ -1,21 +1,23 @@
 (() => {
   "use strict";
 
+  // Enhancement starts only once this file loads. Without JavaScript, all
+  // navigation links remain visible, including on narrow screens.
+  document.documentElement.classList.add("js");
+
   const toggle = document.querySelector("[data-nav-toggle]");
   const nav = document.querySelector("[data-site-nav]");
 
   if (toggle && nav) {
-    const desktopQuery = window.matchMedia("(min-width: 761px)");
-
-    const setMenuState = (isOpen) => {
-      toggle.setAttribute("aria-expanded", String(isOpen));
-      nav.classList.toggle("is-open", isOpen);
+    const desktop = window.matchMedia("(min-width: 801px)");
+    const setOpen = (open) => {
+      toggle.setAttribute("aria-expanded", String(open));
+      nav.classList.toggle("is-open", open);
     };
-
-    const closeMenu = () => setMenuState(false);
+    const closeMenu = () => setOpen(false);
 
     toggle.addEventListener("click", () => {
-      setMenuState(toggle.getAttribute("aria-expanded") !== "true");
+      setOpen(toggle.getAttribute("aria-expanded") !== "true");
     });
 
     nav.addEventListener("click", (event) => {
@@ -25,10 +27,9 @@
     document.addEventListener("click", (event) => {
       if (
         toggle.getAttribute("aria-expanded") === "true" &&
-        !event.target.closest("[data-site-header]")
-      ) {
-        closeMenu();
-      }
+        !toggle.contains(event.target) &&
+        !nav.contains(event.target)
+      ) closeMenu();
     });
 
     document.addEventListener("keydown", (event) => {
@@ -38,12 +39,27 @@
       }
     });
 
-    if (typeof desktopQuery.addEventListener === "function") {
-      desktopQuery.addEventListener("change", closeMenu);
+    if (typeof desktop.addEventListener === "function") {
+      desktop.addEventListener("change", closeMenu);
     } else {
-      desktopQuery.addListener(closeMenu);
+      desktop.addListener(closeMenu);
     }
   }
+
+  // Explicit static counterpart links always work. Preserve the currently
+  // consulted section and query when switching language, without redirects.
+  const updateLanguageLinks = () => {
+    document.querySelectorAll("[data-language-link]").forEach((link) => {
+      const destination = new URL(link.href, window.location.href);
+      if (destination.origin === window.location.origin) {
+        destination.search = window.location.search;
+        destination.hash = window.location.hash;
+        link.href = destination.href;
+      }
+    });
+  };
+  updateLanguageLinks();
+  window.addEventListener("hashchange", updateLanguageLinks);
 
   document.querySelectorAll("[data-year]").forEach((node) => {
     node.textContent = String(new Date().getFullYear());

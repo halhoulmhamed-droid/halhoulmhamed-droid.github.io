@@ -1,0 +1,39 @@
+name: Portfolio checks
+on:
+  pull_request:
+  push:
+    branches: [main, 'feat/bilingual-academic-portfolio']
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  static-site:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verify reproducible HTML
+        run: |
+          python3 tools/build_site.py
+          git diff --exit-code
+      - name: Check routes, metadata, internal links and resources
+        run: python3 tests/check_site.py
+      - name: Check JavaScript and whitespace
+        run: |
+          node --check assets/js/main.js
+          git diff --check
+      - name: Retain static preview for review
+        uses: actions/upload-artifact@v4
+        with:
+          name: portfolio-preview
+          path: |
+            index.html
+            about/
+            projects/
+            contact/
+            fr/
+            assets/
+            404.html
+            robots.txt
+            sitemap.xml
+            googlef09d415956f33f3b.html
+          retention-days: 14

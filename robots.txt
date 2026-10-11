@@ -1,4 +1,3 @@
 User-agent: *
 Allow: /
-
 Sitemap: https://halhoulmhamed-droid.github.io/sitemap.xml

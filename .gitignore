@@ -12,3 +12,7 @@ Desktop.ini
 # Local server and validation artifacts
 *.log
 .tmp/
+
+# Python development caches
+__pycache__/
+*.py[cod]
