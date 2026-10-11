@@ -14,6 +14,14 @@ LABELS = {
  'en': {'home':'Home','about':'About','projects':'Projects','contact':'Contact','skip':'Skip to content','nav':'Main navigation','languages':'Language','menu':'Menu','footer':'Mathematical modelling · Scientific computing','academic':'Master’s scientific project','software':'Software project','read':'Read the study','repo':'Repository','all':'All projects','onpage':'On this page','evidence':'Methods, evidence & limitations','source':'Documented academic work, not peer-reviewed scientific publications.','research':'Research interests','synthesis':'Comparative synthesis','status':'M2 in progress'},
  'fr': {'home':'Accueil','about':'Parcours','projects':'Projets','contact':'Contact','skip':'Aller au contenu','nav':'Navigation principale','languages':'Langue','menu':'Menu','footer':'Modélisation mathématique · Calcul scientifique','academic':'Projet scientifique de Master','software':'Projet logiciel','read':'Lire l’étude','repo':'Dépôt','all':'Tous les projets','onpage':'Sur cette page','evidence':'Méthodes, résultats et limites','source':'Travaux universitaires documentés, distincts des publications scientifiques évaluées par les pairs.','research':'Axes d’intérêt','synthesis':'Synthèse comparative','status':'M2 en cours'}
 }
+INSTITUTIONS = {
+ 'en': {'university':'Abdelmalek Essaâdi University','faculty':'Polydisciplinary Faculty of Larache'},
+ 'fr': {'university':'Université Abdelmalek Essaâdi','faculty':'Faculté Polydisciplinaire de Larache'}
+}
+MASTER_TITLES = {
+ 'en': 'Master’s in Mathematical Modelling, Applications and Learning',
+ 'fr': 'Master « Modélisation mathématique et applications et apprentissages »'
+}
 
 def esc(value): return html.escape(str(value), quote=True)
 def path(route, lang): return ('/fr' if lang == 'fr' else '') + route
@@ -27,7 +35,8 @@ def document(route, lang, title, description, body, category='home', noindex=Fal
     navigation=''.join(link(path(r,lang),l[k]) if k!=category else f'<a href="{path(r,lang)}" aria-current="page">{l[k]}</a>' for k,r in [('home','/'),('about','/about/'),('projects','/projects/'),('contact','/contact/')])
     languages=''.join(f'<a class="lang-link" href="{path(route,code)}" lang="{code}" hreflang="{code}" data-language-link' + (' aria-current="true"' if code==lang else '') + f' aria-label="{label}">{code.upper()}</a>' for code,label in [('en','English'),('fr','Français')])
     alternates=''.join(f'<link rel="alternate" hreflang="{code}" href="{BASE + path(route,code)}">' for code in ['en','fr']) + f'<link rel="alternate" hreflang="x-default" href="{BASE+route}">'
-    schema = {'@context':'https://schema.org','@type':'WebPage','name':title,'url':url,'inLanguage':lang,'description':description,'about':{'@type':'Person','name':NAME,'url':BASE+'/','email':'halhoul.mhamed@etu.uae.ac.ma','affiliation':{'@type':'CollegeOrUniversity','name':'Université Abdelmalek Essaâdi — Faculté Polydisciplinaire de Larache'}}}
+    affiliation = INSTITUTIONS[lang]['university'] + ' — ' + INSTITUTIONS[lang]['faculty']
+    schema = {'@context':'https://schema.org','@type':'WebPage','name':title,'url':url,'inLanguage':lang,'description':description,'about':{'@type':'Person','name':NAME,'url':BASE+'/','email':'halhoul.mhamed@etu.uae.ac.ma','affiliation':{'@type':'CollegeOrUniversity','name':affiliation}}}
     rendered = f'''<!doctype html>
 <html lang="{lang}">
 <head>
@@ -100,14 +109,14 @@ def home(lang):
         headline='Mathematical models.<br><em>Verifiable evidence.</em>'
         intro='An M2 student developing a path in mathematical modelling, optimization and scientific computing, with interests in inverse problems and learning.'
         focus='From model to reconstruction';focusintro='Three Master’s scientific projects: restoring an image, studying neural optimization and reconstructing a source from indirect measurements.'
-        fields=[('Programme stage','M2 in progress'),('Faculty','Faculté Polydisciplinaire de Larache'),('University','Université Abdelmalek Essaâdi')]
+        fields=[('Programme stage','M2 in progress'),('Faculty',INSTITUTIONS[lang]['faculty']),('University',INSTITUTIONS[lang]['university'])]
         studyhead='A scientific process, made explicit.';studydesc='Problem, protocol, results and limitations: each study connects to public sources and research artefacts.'
-        band='Master « Modélisation mathématique et applications et apprentissages »';bandtext='Université Abdelmalek Essaâdi · Faculté Polydisciplinaire de Larache'
+        band=MASTER_TITLES[lang];bandtext=INSTITUTIONS[lang]['university']+' · '+INSTITUTIONS[lang]['faculty']
         synhead='Read the inverse studies together.';syntxt='A synthesis of three studies examines what the criteria establish, what remains inconclusive and the limits of transferring a finding across scenarios.'
         softhead='Software with a defined scope.';softdesc='Two complementary software projects, presented in their published state: a local demo and pre-alpha contracts.'
     facts=''.join(f'<div><dt>{a}</dt><dd>{b}</dd></div>' for a,b in fields)
     return f'''<section class="hero shell"><div class="hero-grid"><div><p class="eyebrow">{NAME} <span aria-hidden="true">/</span> {l['status']}</p><h1>{headline}</h1><p class="lead">{intro}</p><div class="project-links">{link(path('/projects/',lang),l['projects'],'button button-primary')}{link(path('/about/',lang),l['about'],'button button-secondary')}</div></div><div class="hero-aside"><p class="eyebrow">{l['research']}</p><h2>{focus}</h2><p>{focusintro}</p><dl class="fact-list">{facts}</dl></div></div></section>
-<div class="identity-band"><div class="shell"><div><p class="eyebrow">{l['status']}</p><h2 lang="fr">{band}</h2><p>{bandtext}</p></div>{link(path('/contact/',lang),l['contact']+' ↗','button button-secondary')}</div></div>
+<div class="identity-band"><div class="shell"><div><p class="eyebrow">{l['status']}</p><h2 lang="{lang}">{band}</h2><p>{bandtext}</p></div>{link(path('/contact/',lang),l['contact']+' ↗','button button-secondary')}</div></div>
 <section class="section shell"><div class="section-heading"><div><p class="eyebrow">01 / {l['academic']}</p><h2>{studyhead}</h2></div><p class="section-intro">{studydesc}</p></div><div class="project-grid">{''.join(card(k,lang,i+1) for i,k in enumerate(['pde','nn','inverse']))}</div><p class="note">{l['source']}</p></section>
 <section class="section shell split-section"><div><p class="section-label">02 / {l['synthesis']}</p><h2>{synhead}</h2></div><div class="split-content"><p class="lead">{syntxt}</p>{link(path(PAGES['synthesis']['route'],lang),l['read']+' ↗','text-link')}</div></section>
 <section class="section shell"><div class="section-heading"><div><p class="eyebrow">03 / {l['software']}</p><h2>{softhead}</h2></div><p class="section-intro">{softdesc}</p></div><div class="project-grid software-grid">{card('talk',lang,1)}{card('hujja',lang,2)}</div></section>{contacts(lang)}'''
@@ -128,6 +137,8 @@ def case(key,lang):
     return f'<article><header class="case-hero shell"><p class="breadcrumb">{link(path("/projects/",lang),"← "+l["all"])}</p><p class="eyebrow">{kind}</p><h1>{esc(p["title_"+lang])}</h1><p class="lead">{p["description_"+lang]}</p><div class="case-meta">{attribution}</div></header><div class="case-layout shell"><nav class="case-nav" aria-label="{l["onpage"]}"><p class="eyebrow">{l["onpage"]}</p>{toc}</nav><div class="case-body prose">{content}</div></div></article>'
 
 def about(lang):
+    institution = INSTITUTIONS[lang]['university'] + ' · ' + INSTITUTIONS[lang]['faculty']
+    degree_note = ''
     if lang=='fr':
         title='Un parcours en mathématiques appliquées.';intro='Je suis Halhoul Mhamed, étudiant en deuxième année de Master (M2), à la Faculté Polydisciplinaire de Larache de l’Université Abdelmalek Essaâdi.'
         training='Formation';stage='M1 terminé · M2 en cours';official='Master « Modélisation mathématique et applications et apprentissages »';degree='Licence d’Études Fondamentales — Sciences Mathématiques et Applications';university='Université Ibn Zohr · 2015'
@@ -137,15 +148,16 @@ def about(lang):
         trajectory='Vers la recherche doctorale';trajectorytext='Je souhaite approfondir les liens entre modélisation, problèmes inverses, optimisation et apprentissage. Les projets présentés ici documentent un travail de Master ; ils ne constituent pas une revendication de nouveauté algorithmique ou de publication scientifique.'
         course='Socle de formation';coursetext='Le parcours de M1 comprend notamment l’analyse numérique et matricielle, l’analyse fonctionnelle, les méthodes numériques pour les EDP, l’optimisation, les probabilités et les statistiques. En M2, les projets présentés portent sur la modélisation déterministe, l’optimisation et les problèmes inverses.'
     else:
-        title='A path through applied mathematics.';intro='I am Halhoul Mhamed, a second-year Master’s student (M2) at Faculté Polydisciplinaire de Larache, Université Abdelmalek Essaâdi.'
-        training='Education';stage='M1 completed · M2 in progress';official='Master « Modélisation mathématique et applications et apprentissages »';degree='Licence d’Études Fondamentales — Sciences Mathématiques et Applications';university='Université Ibn Zohr · 2015'
-        details='The official French Master’s programme title is retained. The degree is in progress.'
+        title='A path through applied mathematics.';intro='I am Halhoul Mhamed, a second-year Master’s student (M2) at the Polydisciplinary Faculty of Larache, Abdelmalek Essaâdi University.'
+        training='Education';stage='M1 completed · M2 in progress';official=MASTER_TITLES[lang];degree='Bachelor’s degree in Mathematical Sciences and Applications';university='Ibn Zohr University · 2015'
+        details='The degree is in progress. Official programme title: <span lang="fr">'+MASTER_TITLES['fr']+'</span>.'
+        degree_note='<p>Official degree title: <span lang="fr">Licence d’Études Fondamentales — Sciences Mathématiques et Applications</span>.</p>'
         fields=[('Modelling','Formulating assumptions, variables and relationships in a mathematical model.'),('Optimization','Studying methods and their behaviour within defined protocols.'),('Scientific computing','Connecting numerical analysis to implementations and reproducible evidence.'),('Learning','Examining the role of learned models in a mathematical and experimental framework.')]
         interests='Research interests';teaching='Mathematics teaching';teachtext='Mathematics teaching in Moroccan secondary schools began in 2016. A separate period of private mathematics tutoring is documented for 2009–2011.'
         trajectory='Towards doctoral research';trajectorytext='I aim to deepen the connections between modelling, inverse problems, optimization and learning. The projects here document Master’s work; they do not claim algorithmic novelty or scientific publication.'
         course='Mathematical foundation';coursetext='M1 study includes numerical and matrix analysis, functional analysis, numerical methods for PDEs, optimization, probability and statistics. The M2 projects presented here concern deterministic modelling, optimization and inverse problems.'
     fieldhtml=''.join(f'<article class="fact"><h3>{a}</h3><p>{b}</p></article>' for a,b in fields)
-    return f'<section class="page-intro shell"><p class="eyebrow">{LABELS[lang]["about"]}</p><h1>{title}</h1><p class="lead">{intro}</p></section><section class="section shell split-section"><p class="section-label">01 / {training}</p><div class="split-content"><ol class="record-list"><li><p class="project-kind">{stage}</p><h2 lang="fr">{official}</h2><p>Université Abdelmalek Essaâdi · Faculté Polydisciplinaire de Larache</p><p>{details}</p></li><li><p class="project-kind">{university}</p><h3 lang="fr">{degree}</h3></li></ol><h3>{course}</h3><p>{coursetext}</p></div></section><section class="section shell"><div class="section-heading"><div><p class="eyebrow">02</p><h2>{interests}</h2></div></div><div class="fact-grid">{fieldhtml}</div></section><section class="section shell split-section"><p class="section-label">03 / {teaching}</p><div class="split-content"><h2>{teaching}</h2><p>{teachtext}</p></div></section><section class="section shell split-section"><p class="section-label">04</p><div class="split-content"><h2>{trajectory}</h2><p class="lead">{trajectorytext}</p>{link(path("/projects/",lang),LABELS[lang]["projects"]+" ↗","text-link")}</div></section>{contacts(lang)}'
+    return f'<section class="page-intro shell"><p class="eyebrow">{LABELS[lang]["about"]}</p><h1>{title}</h1><p class="lead">{intro}</p></section><section class="section shell split-section"><p class="section-label">01 / {training}</p><div class="split-content"><ol class="record-list"><li><p class="project-kind">{stage}</p><h2 lang="{lang}">{official}</h2><p>{institution}</p><p>{details}</p></li><li><p class="project-kind">{university}</p><h3 lang="{lang}">{degree}</h3>{degree_note}</li></ol><h3>{course}</h3><p>{coursetext}</p></div></section><section class="section shell"><div class="section-heading"><div><p class="eyebrow">02</p><h2>{interests}</h2></div></div><div class="fact-grid">{fieldhtml}</div></section><section class="section shell split-section"><p class="section-label">03 / {teaching}</p><div class="split-content"><h2>{teaching}</h2><p>{teachtext}</p></div></section><section class="section shell split-section"><p class="section-label">04</p><div class="split-content"><h2>{trajectory}</h2><p class="lead">{trajectorytext}</p>{link(path("/projects/",lang),LABELS[lang]["projects"]+" ↗","text-link")}</div></section>{contacts(lang)}'
 
 def write(route,lang,title,description,body,category='home',noindex=False):
     location = path(route,lang).lstrip('/')
@@ -155,8 +167,8 @@ def write(route,lang,title,description,body,category='home',noindex=False):
 
 routes=['/','/about/','/projects/','/contact/']+[p['route'] for p in PAGES.values()]
 for lang in ['en','fr']:
-    write('/',lang,'Portfolio académique' if lang=='fr' else 'Academic portfolio','Halhoul Mhamed — M2 en cours à l’Université Abdelmalek Essaâdi. Modélisation, optimisation, problèmes inverses et calcul scientifique.' if lang=='fr' else 'Halhoul Mhamed — M2 student at Université Abdelmalek Essaâdi. Mathematical modelling, optimization, inverse problems and scientific computing.',home(lang))
-    write('/about/',lang,'Parcours' if lang=='fr' else 'About','Formation, intérêts scientifiques et parcours de Halhoul Mhamed, étudiant en M2 à la Faculté Polydisciplinaire de Larache.' if lang=='fr' else 'Education, scientific interests and background of Halhoul Mhamed, an M2 student at Faculté Polydisciplinaire de Larache.',about(lang),'about')
+    write('/',lang,'Portfolio académique' if lang=='fr' else 'Academic portfolio','Halhoul Mhamed — M2 en cours à l’Université Abdelmalek Essaâdi. Modélisation, optimisation, problèmes inverses et calcul scientifique.' if lang=='fr' else 'Halhoul Mhamed — M2 student at Abdelmalek Essaâdi University. Mathematical modelling, optimization, inverse problems and scientific computing.',home(lang))
+    write('/about/',lang,'Parcours' if lang=='fr' else 'About','Formation, intérêts scientifiques et parcours de Halhoul Mhamed, étudiant en M2 à la Faculté Polydisciplinaire de Larache.' if lang=='fr' else 'Education, scientific interests and background of Halhoul Mhamed, an M2 student at the Polydisciplinary Faculty of Larache.',about(lang),'about')
     write('/projects/',lang,'Projets' if lang=='fr' else 'Projects','Projets scientifiques de Master et projets logiciels : protocoles, résultats, limites et sources publiques.' if lang=='fr' else 'Master’s scientific projects and software work: protocols, results, limitations and public sources.',projects(lang),'projects')
     write('/contact/',lang,'Contact et échanges scientifiques' if lang=='fr' else 'Contact & research conversations','Contacter Halhoul Mhamed pour un échange scientifique ou doctoral.' if lang=='fr' else 'Contact Halhoul Mhamed for scientific and doctoral research conversations.',contacts(lang).replace('<h2>', '<h1>', 1).replace('</h2>', '</h1>', 1),'contact')
     for key,p in PAGES.items(): write(p['route'],lang,p['title_'+lang],p['description_'+lang],case(key,lang),'projects')
