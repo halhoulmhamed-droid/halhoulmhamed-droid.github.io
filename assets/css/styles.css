@@ -57,7 +57,7 @@ main:focus { outline: none; }
 .site-header { position: sticky; z-index: 100; top: 0; border-bottom: 1px solid var(--line); background: var(--canvas); }
 .header-inner { display: flex; align-items: center; justify-content: space-between; min-height: 86px; gap: 24px; }
 .brand { display: inline-flex; flex: 0 0 auto; align-items: center; gap: 13px; color: var(--ink); text-decoration: none; }
-.brand-mark { display: grid; place-items: center; width: 39px; height: 44px; border: 1px solid var(--ink); font-family: var(--font-serif); font-size: 1.1rem; letter-spacing: -.06em; }
+.brand-mark { display: grid; place-items: center; flex-shrink: 0; width: 39px; height: 44px; border: 1px solid var(--ink); font-family: var(--font-serif); font-size: 1.1rem; line-height: 1; letter-spacing: -.06em; text-align: center; white-space: nowrap; }
 .brand-name { font-size: .92rem; font-weight: 650; letter-spacing: -.015em; }
 .site-nav { display: flex; align-items: center; gap: 28px; }
 .site-nav > a { position: relative; display: inline-flex; align-items: center; min-height: 44px; color: var(--ink-soft); font-size: .84rem; text-decoration: none; }
