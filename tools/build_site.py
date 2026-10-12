@@ -7,8 +7,9 @@ from pathlib import Path
 from datetime import date
 
 ROOT = Path(__file__).resolve().parents[1]
-BASE = 'https://halhoulmhamed-droid.github.io'
-NAME = 'Halhoul Mhamed'
+SITE = json.loads((ROOT / 'content/site.json').read_text())
+BASE = SITE['url']
+NAME = SITE['name']
 PAGES = json.loads((ROOT / 'content/pages.json').read_text())
 LABELS = {
  'en': {'home':'Home','about':'About','projects':'Projects','contact':'Contact','skip':'Skip to content','nav':'Main navigation','languages':'Language','menu':'Menu','footer':'Mathematical modelling · Scientific computing','academic':'Master’s scientific project','software':'Software project','read':'Read the study','repo':'Repository','all':'All projects','onpage':'On this page','evidence':'Methods, evidence & limitations','source':'Documented academic work, not peer-reviewed scientific publications.','research':'Research interests','synthesis':'Comparative synthesis','status':'M2 in progress'},
@@ -26,9 +27,14 @@ MASTER_TITLES = {
 def esc(value): return html.escape(str(value), quote=True)
 def path(route, lang): return ('/fr' if lang == 'fr' else '') + route
 
-def link(url, label, cls=''):
+def link(url, label, cls='', aria_label=''):
     external = url.startswith('https://')
-    return f'<a href="{esc(url)}"' + (f' class="{esc(cls)}"' if cls else '') + (' rel="noopener noreferrer"' if external else '') + f'>{label}</a>'
+    return f'<a href="{esc(url)}"' + (f' class="{esc(cls)}"' if cls else '') + (f' aria-label="{esc(aria_label)}"' if aria_label else '') + (' rel="noopener noreferrer"' if external else '') + f'>{label}</a>'
+
+def profile_link(key, lang, with_arrow=False):
+    platform = {'github':'GitHub','orcid':'ORCID','linkedin':'LinkedIn'}[key]
+    label = f'Profil {platform} de {NAME}' if lang == 'fr' else f'{NAME}’s {platform} profile'
+    return link(SITE['profiles'][key], platform + (' ↗' if with_arrow else ''), aria_label=label)
 
 def document(route, lang, title, description, body, category='home', noindex=False):
     l = LABELS[lang]; url = BASE + path(route, lang)
@@ -36,7 +42,7 @@ def document(route, lang, title, description, body, category='home', noindex=Fal
     languages=''.join(f'<a class="lang-link" href="{path(route,code)}" lang="{code}" hreflang="{code}" data-language-link' + (' aria-current="true"' if code==lang else '') + f' aria-label="{label}">{code.upper()}</a>' for code,label in [('en','English'),('fr','Français')])
     alternates=''.join(f'<link rel="alternate" hreflang="{code}" href="{BASE + path(route,code)}">' for code in ['en','fr']) + f'<link rel="alternate" hreflang="x-default" href="{BASE+route}">'
     affiliation = INSTITUTIONS[lang]['university'] + ' — ' + INSTITUTIONS[lang]['faculty']
-    schema = {'@context':'https://schema.org','@type':'WebPage','name':title,'url':url,'inLanguage':lang,'description':description,'about':{'@type':'Person','name':NAME,'url':BASE+'/','email':'halhoul.mhamed@etu.uae.ac.ma','affiliation':{'@type':'CollegeOrUniversity','name':affiliation}}}
+    schema = {'@context':'https://schema.org','@type':'WebPage','name':title,'url':url,'inLanguage':lang,'description':description,'about':{'@type':'Person','name':NAME,'url':BASE+'/','email':SITE['emails']['university'],'sameAs':list(SITE['profiles'].values()),'affiliation':{'@type':'CollegeOrUniversity','name':affiliation}}}
     rendered = f'''<!doctype html>
 <html lang="{lang}">
 <head>
@@ -74,7 +80,7 @@ def document(route, lang, title, description, body, category='home', noindex=Fal
 <nav class="language-switch" aria-label="{l['languages']}">{languages}</nav>
 </div></header>
 <main id="main-content" tabindex="-1">{body}</main>
-<footer class="site-footer"><div class="shell footer-inner"><div><p>© <span data-year>2026</span> {NAME}</p><p class="muted">{l['footer']}</p></div><div class="footer-links">{link(path('/contact/',lang),l['contact'])}{link('https://github.com/halhoulmhamed-droid','GitHub')}{link('https://orcid.org/0009-0007-3893-2603','ORCID')}</div></div></footer>
+<footer class="site-footer"><div class="shell footer-inner"><div><p>© <span data-year>2026</span> {NAME}</p><p class="muted">{l['footer']}</p></div><div class="footer-links">{link(path('/contact/',lang),l['contact'])}{''.join(profile_link(key,lang) for key in SITE['profiles'])}</div></div></footer>
 </body></html>
 '''
     arrow = '<svg class="inline-icon" aria-hidden="true" viewBox="0 0 16 16" width="16" height="16"><path d="M3 13 13 3M3 3h10v10"/></svg>'
@@ -90,9 +96,13 @@ def card(key,lang,index):
 def contacts(lang,compact=False):
     if lang=='fr':
         title='Échangeons autour d’une question scientifique.';desc='Pour un échange avec un encadrant de doctorat, un laboratoire ou un partenaire scientifique, vous pouvez me contacter directement.';a='Adresse universitaire';b='Adresse personnelle'
+        c='Identifiant chercheur';d='Réseau professionnel'
     else:
         title='Let’s start with a scientific question.';desc='For conversations with prospective doctoral supervisors, laboratories and scientific partners, please contact me directly.';a='University email';b='Personal email'
-    return f'<section class="section shell" id="contact"><div class="section-heading"><div><p class="eyebrow">{LABELS[lang]["contact"]}</p><h2>{title}</h2></div><p class="section-intro">{desc}</p></div><div class="contact-grid"><article class="contact-card"><p class="project-kind">{a}</p>{link("mailto:halhoul.mhamed@etu.uae.ac.ma","halhoul.mhamed@etu.uae.ac.ma")}</article><article class="contact-card"><p class="project-kind">{b}</p>{link("mailto:halhoulmhamed@gmail.com","halhoulmhamed@gmail.com")}</article></div></section>'
+        c='Researcher identifier';d='Professional network'
+    emails=''.join(f'<article class="contact-card"><p class="project-kind">{label}</p>{link("mailto:"+SITE["emails"][key],esc(SITE["emails"][key]))}</article>' for key,label in [('university',a),('personal',b)])
+    profiles=''.join(f'<article class="contact-card"><p class="project-kind">{label}</p>{profile_link(key,lang,with_arrow=True)}</article>' for key,label in [('orcid',c),('linkedin',d)])
+    return f'<section class="section shell" id="contact"><div class="section-heading"><div><p class="eyebrow">{LABELS[lang]["contact"]}</p><h2>{title}</h2></div><p class="section-intro">{desc}</p></div><div class="contact-grid">{emails}{profiles}</div></section>'
 
 def home(lang):
     l=LABELS[lang]

@@ -1,0 +1,17 @@
+{
+  "url": "https://halhoulmhamed-droid.github.io",
+  "name": "Halhoul Mhamed",
+  "profiles": {
+    "github": "https://github.com/halhoulmhamed-droid",
+    "orcid": "https://orcid.org/0009-0007-3893-2603",
+    "linkedin": "https://www.linkedin.com/in/mhamed-halhoul/"
+  },
+  "emails": {
+    "university": "halhoul.mhamed@etu.uae.ac.ma",
+    "personal": "halhoulmhamed@gmail.com"
+  },
+  "profile_provenance": {
+    "commit": "6dcb1b1825a7b385b58ae342c4c1213e45105062",
+    "file": "index.html"
+  }
+}
