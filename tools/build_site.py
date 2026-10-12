@@ -74,7 +74,7 @@ def document(route, lang, title, description, body, category='home', noindex=Fal
 <body>
 <a class="skip-link" href="#main-content">{l['skip']}</a>
 <header class="site-header" data-site-header><div class="shell header-inner">
-<a class="brand" href="{path('/',lang)}"><span class="brand-mark" aria-hidden="true">HM</span><span class="brand-name">{NAME}</span></a>
+<a class="brand" href="{path('/',lang)}"><span class="brand-mark notranslate" translate="no" aria-hidden="true">HM</span><span class="brand-name notranslate" translate="no">{NAME}</span></a>
 <button class="nav-toggle" type="button" aria-controls="site-nav" aria-expanded="false" data-nav-toggle>{l['menu']} <span class="nav-toggle-mark" aria-hidden="true"></span></button>
 <nav class="site-nav" id="site-nav" aria-label="{l['nav']}" data-site-nav>{navigation}</nav>
 <nav class="language-switch" aria-label="{l['languages']}">{languages}</nav>
