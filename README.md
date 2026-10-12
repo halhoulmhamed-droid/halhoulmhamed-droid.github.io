@@ -57,6 +57,8 @@ git diff --check
 
 The generator needs Python 3 only. It uses no package downloads or scientific dependencies. Running it again must leave committed generated HTML unchanged. No experiments are part of this workflow.
 
+`content/site.json` centralizes the site address, identity, email addresses and GitHub/ORCID/LinkedIn profile URLs. ORCID and LinkedIn appear once in each Contact block and once in each footer, with translated accessible labels. Their exact URLs are documented in the portfolio’s [historical `index.html`](https://github.com/halhoulmhamed-droid/halhoulmhamed-droid.github.io/blob/6dcb1b1825a7b385b58ae342c4c1213e45105062/index.html); profile availability is a separate network check. Configuration remains excluded from the published site.
+
 When updating a scientific entry, inspect relevant public branches, distinguish documentary and scientific versions, verify immutable target paths, preserve uncertainty and attribution, update both languages and recheck figure/data provenance. Only documented projects should be added.
 
 ## Browser and release checks
